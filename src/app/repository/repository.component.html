@@ -8,18 +8,22 @@
 <div class="container">
     <div class="row">
       <div  class="col-md-12">
-        <h2 style="color: black" >REPOSITORIES</h2>
+        <h2 style="color: orange" >REPOSITORIES</h2>
         <div class="table table-striped">
-            <table class="table table-dark table-hover" *ngFor='let repository of userRepos.newRepository'>
+            <table class="table table-dark table-hover">
               <tbody>
-              <h2>
-                  <a href="{{repository.html_url}}" target="_blank" >{{repository.name}}</a>
-                </h2>
-              </tbody>
-              <tbody>
-                <p class="description">Description: {{repository.description}}</p>
-                <br>
-                <p>Date Created: {{repository.created_at | date}}</p>
+                  <tr *ngFor=" let repository of gitRepoRequest.searchRepo" >
+                      <td>
+                        <h4>
+                          <a style="text-align: center" href="{{repository.html_url}} " >{{repository.name}}</a>
+                        </h4>
+                        <p > Repository Owner:
+                          <a href="{{repository.owner.html_url}}">{{repository.owner.login}}</a>
+                        </p>
+                        <p>Date Created : {{repository.created_at|date}}</p>
+                        <p>Description : {{repository.description}}</p>
+                      </td>
+                    </tr>
               </tbody>
             </table>
         </div>
