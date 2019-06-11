@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-repository',
   templateUrl: './repository.component.html',
+  providers: [SearchService],
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
-  public searchMe = 'francismuk';
+  public searchMe = '';
   public githubRepo: string;
 
   repository: Repository;
@@ -17,6 +18,7 @@ export class RepositoryComponent implements OnInit {
   public resultCount = 12;
   Repos: Repository;
   users: User;
+  gitRepoRequest: any;
 
     searchRepos() {
         this.searchRepo = '';
@@ -25,8 +27,8 @@ export class RepositoryComponent implements OnInit {
 
     }
   getDataFunction() {
-    throw new Error('Method not implemented.');
-  }
+    this.gitRepoRequest.gitRepos(this.searchRepo);
+    }
 
     constructor(public githubRepoRequest: SearchService, public userRepos: SearchService) { }
 
