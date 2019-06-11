@@ -10,32 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
-  public searchMe = '';
-  public githubRepo: string;
-
   repository: Repository;
   public searchRepo: string;
   public resultCount = 12;
-  Repos: Repository;
-  users: User;
-  gitRepoRequest: any;
 
-    searchRepos() {
-        this.searchRepo = '';
-        this.resultCount = 10;
-        this.getDataFunction();
+  searchRepos() {
+      this.searchRepo = '';
+      this.resultCount = 10;
+      this.getDataFunction();
 
-    }
-  getDataFunction() {
-    this.gitRepoRequest.gitRepos(this.searchRepo);
-    }
-
-    constructor(public githubRepoRequest: SearchService, public userRepos: SearchService) { }
-
-  ngOnInit() {
-      this.githubRepoRequest.githubUser(this.searchMe);
-      this.users = this.githubRepoRequest.users;
-      this.userRepos.gitUserRepos(this.searchMe);
-      console.log(this.userRepos);
   }
+
+  constructor(public gitRepoRequest: SearchService ) { }
+
+ngOnInit() {
+      this.resultCount = 5;
+    this.gitRepoRequest.gitRepos(this.searchRepo);
 }
+
+
+    getDataFunction() {
+        this.gitRepoRequest.gitRepos(this.searchRepo);
+
+    }
+
+
+}
+
