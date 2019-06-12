@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-
 import { AppComponent } from '../app.component';
 import { AboutComponent } from '../about/about.component';
-
-
+import {UserComponent} from '../user/user.component';
+import {RepositoryComponent} from '../repository/repository.component';
 // Defining routes
 const routes: Routes = [
-  {path: 'Home', component: AppComponent},
-  {path: 'About', component: AboutComponent},
-  {path: '', redirectTo: '/app', pathMatch: 'full'},
+  {path: 'users', component: UserComponent},
+  {path: 'repository', component: RepositoryComponent},
+  {path: '', redirectTo: '/users', pathMatch: 'full'},
 ];
 
 @NgModule({
