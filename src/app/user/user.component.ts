@@ -10,11 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  public searchMe = 'francismuk';
+  public searchMe = '';
   public githubUser: string;
 
   users: User ;
-    public resultCount = 12;
+  repository: Repository;
+  public searchRepo: string;
+  public resultCount = 12;
 
 
   findUser(username) {
@@ -22,11 +24,21 @@ export class UserComponent implements OnInit {
       this.searchMe  = username;
       this.ngOnInit();
   }
-  constructor(public githubUserRequest: SearchService) { }
 
-  ngOnInit() {
-      this.githubUserRequest.githubUser(this.searchMe);
-      this.users = this.githubUserRequest.users;
-      console.log(this.users);
+
+constructor(public githubUserRequest: SearchService, public userRepos: SearchService) { }
+
+ngOnInit() {
+    this.githubUserRequest.githubUser(this.searchMe);
+    this.users = this.githubUserRequest.users;
+    this.userRepos.gitUserRepos(this.searchMe);
+    console.log(this.userRepos);
+}
+
+
+  searchRepos() {
+      this.searchRepo = '';
+      this.resultCount = 10;
+
   }
 }

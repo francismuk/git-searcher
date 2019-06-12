@@ -6,33 +6,34 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-repository',
   templateUrl: './repository.component.html',
+  providers: [SearchService],
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
-  public searchMe = 'francismuk';
-  public githubRepo: string;
-
   repository: Repository;
   public searchRepo: string;
   public resultCount = 12;
-  users: User;
 
-    searchRepos() {
-        this.searchRepo = '';
-        this.resultCount = 10;
-        this.getDataFunction();
+  searchRepos() {
+      this.searchRepo = 'francismuk';
+      this.resultCount = 10;
+      this.getDataFunction();
+
+  }
+
+  constructor(public gitRepoRequest: SearchService ) { }
+
+ngOnInit() {
+      this.resultCount = 5;
+    this.gitRepoRequest.gitRepos(this.searchRepo);
+}
+
+
+    getDataFunction() {
+        this.gitRepoRequest.gitRepos(this.searchRepo);
 
     }
-  getDataFunction() {
-    throw new Error('Method not implemented.');
-  }
 
-    constructor(public githubRepoRequest: SearchService, public userRepos: SearchService) { }
 
-  ngOnInit() {
-      this.githubRepoRequest.githubUser(this.searchMe);
-      this.users = this.githubRepoRequest.users;
-      this.userRepos.gitUserRepos(this.searchMe);
-      console.log(this.userRepos);
-  }
 }
+

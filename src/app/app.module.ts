@@ -13,11 +13,14 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { AboutComponent } from './about/about.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DateCountPipe } from './date-count.pipe';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RoutingModule } from './routing/routing.module';
 
 
 const routes: Routes = [
-  {path: 'App', component: AppComponent},
-  {path: 'about', component: AboutComponent}
+  {path: 'users', component: UserComponent},
+  {path: 'repository', component: RepositoryComponent},
+  {path: '', redirectTo: '/users', pathMatch: 'full'},
 ];
 @NgModule({
   declarations: [
@@ -27,10 +30,13 @@ const routes: Routes = [
     SearchFormComponent,
     AboutComponent,
     DateCountPipe,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    RoutingModule,
+    RouterModule,
     HttpClientModule,
     NgProgressModule, // normal progress bar
     NgProgressHttpModule,

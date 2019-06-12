@@ -9,16 +9,18 @@ import {Search} from '../search';
 export class SearchFormComponent implements OnInit {
 
   searchInfo = new Search('');
-    @Output() getName = new EventEmitter<Search>();
+  @Output() getName = new EventEmitter<Search>();
 
-    searchFor(data){
-        this.getName.emit(data.value.find);
-        console.log(data.value.find);
-        data.reset();
-    }
-  constructor() { }
-
-  ngOnInit() {
+  searchFor(data){
+      this.getName.emit(data.value.find);
+      console.log(data.value.find)
+      data.reset();
   }
+
+
+constructor() { }
+
+ngOnInit() {
+}
 
 }
